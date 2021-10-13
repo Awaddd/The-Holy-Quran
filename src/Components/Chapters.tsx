@@ -1,13 +1,15 @@
 import React from 'react'
 import { useQuery } from 'react-query'
+import { getAllChapters } from '../Services/ChaptersService'
+import Panel from '../Library/Components/Panel'
 
-function Chapters(props) {
+export interface ChaptersProps {
 
-    const fetchAllChapters = async () => {
-        return (await fetch(`${props.baseURL}/chapters?language=en`)).json()
-    }
+}
 
-    const { data, error, status } = useQuery('chapters', fetchAllChapters)
+function Chapters({ }: ChaptersProps) {
+
+    const { data, error, status } = useQuery('chapters', async () => getAllChapters())
 
     if (typeof data == 'undefined') {
         return (
@@ -18,21 +20,12 @@ function Chapters(props) {
     const chapters = data.chapters
 
     return (
-        <div>
-
+        <section>
             <h2>Chapters</h2>
-
-            <ul className="chapters-list">
-                {chapters.map((chapter:any, index:number) => {
-                    return <li key={index} className="chapter"> 
-                        <span className="chapterID"> {chapter.id}. </span> 
-                        <span className="chapterName"> {chapter['name_simple']} </span>
-                        <span className="chapterNameMeaning"> {chapter['translated_name'].name} </span>
-                    </li>
-                })}
-            </ul>
-
-        </div>
+            {chapters.map((chapter: any, index: number) => {
+                return <Panel name={chapter['name_simple']} description={chapter['translated_name'].name}></Panel>
+            })}
+        </section>
     )
 
 }
