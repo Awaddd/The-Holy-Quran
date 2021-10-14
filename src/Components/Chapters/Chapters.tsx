@@ -24,7 +24,7 @@ function Chapters({ }: ChaptersProps) {
 
     return (
         <section className="bg-white">
-            <h2 className="py-4 text-center text-2xl sm:text-3xl md:text-4xl font-semibold text-gray-800 underline">Chapters</h2>
+            {/* <h2 className="py-4 text-center text-2xl sm:text-3xl md:text-4xl font-semibold text-gray-800 underline">Chapters</h2> */}            
             <main className="md:mt-3">
                 {chapters.map((chapter: any, index: number) => {
                     return (
