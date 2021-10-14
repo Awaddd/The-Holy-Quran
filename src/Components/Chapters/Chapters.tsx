@@ -7,6 +7,9 @@ export interface ChaptersProps {
 
 }
 
+const playAudio = (chapterID: number) => {
+}
+
 function Chapters({ }: ChaptersProps) {
 
     const { data, error, status } = useQuery('chapters', async () => getAllChapters())
@@ -25,7 +28,7 @@ function Chapters({ }: ChaptersProps) {
             <main className="md:mt-3">
                 {chapters.map((chapter: any, index: number) => {
                     return (
-                        <Panel name={chapter['name_simple']} description={chapter['translated_name'].name} icon="play" action={(e) => alert('Hi')}></Panel>
+                        <Panel name={chapter['name_simple']} description={chapter['translated_name'].name} icon="play" action={() => playAudio(chapter['id'])}></Panel>
                     )
                 })}
             </main>

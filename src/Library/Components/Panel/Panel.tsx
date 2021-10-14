@@ -4,7 +4,7 @@ export interface PanelProps {
     name: string
     description?: string
     icon?: string | "BsFillPlayFill" | "Bookmark"
-    action?: (event: any) => void
+    action?: (...args: any[]) => void
 }
 
 const returnIcon = (iconName: string | undefined, size: string | undefined = "1.5rem") => {
