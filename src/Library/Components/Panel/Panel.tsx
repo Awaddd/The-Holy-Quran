@@ -8,7 +8,7 @@ export interface PanelProps {
 function Panel ({ name, description } : PanelProps) {
     return (
         <article>
-            <h3>{ name } ({ description })</h3>
+            <h3>{ name } { description !== null && ( <span>({description})</span> ) } </h3>
         </article>
     )
 }
