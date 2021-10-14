@@ -1,14 +1,28 @@
-import React from 'react'
-
+import React, { useState } from 'react'
+import { BsFillPlayFill, BsBookmark } from 'react-icons/bs';
 export interface PanelProps {
     name: string
     description?: string
+    icon?: string | "BsFillPlayFill" | "Bookmark"
 }
 
-function Panel ({ name, description } : PanelProps) {
+const returnIcon = (iconName: string | undefined) => {
+    let item  = null
+
+    switch (iconName) {
+        case 'play': item = ( <BsFillPlayFill/> ); break;
+        case 'bookmark': item = ( <BsBookmark/> ); break;
+    }
+
+    return item
+}
+
+function Panel ({ name, description, icon } : PanelProps) {
     return (
-        <article style={{background: "#e9ecef", border: "1px solid #434c5e", padding: "0.5rem 1.5rem", borderRadius: "3px"}}>
-            <h3>{ name } { description !== null && ( <span>({description})</span> ) } </h3>
+        <article className="m-2 p-2 bg-white rounded-sm shadow-sm border border-gray-200 cursor-pointer">
+            <h3 className="text-lg font-semibold leading-tight text-green-400">{ name }</h3>
+            { description !== null && ( <span className="text-sm text-gray-600">{ description }</span> ) }
+            { icon !== null && ( <span className=""> {returnIcon(icon)} </span> )}
         </article>
     )
 }
