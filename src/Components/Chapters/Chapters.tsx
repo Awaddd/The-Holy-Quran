@@ -22,12 +22,13 @@ function Chapters({ }: ChaptersProps) {
     return (
         <section className="bg-white">
             <h2 className="py-4 text-center text-2xl sm:text-3xl md:text-4xl font-semibold text-gray-800 underline">Chapters</h2>
-
-            {chapters.map((chapter: any, index: number) => {
-                return (
-                    <Panel name={chapter['name_simple']} description={chapter['translated_name'].name} icon="play"></Panel>
-                )
-            })}
+            <main className="md:mt-3">
+                {chapters.map((chapter: any, index: number) => {
+                    return (
+                        <Panel name={chapter['name_simple']} description={chapter['translated_name'].name} icon="play" action={(e) => alert('Hi')}></Panel>
+                    )
+                })}
+            </main>
         </section>
     )
 
