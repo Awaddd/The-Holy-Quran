@@ -6,23 +6,21 @@ export interface PanelProps {
     icon?: string | "BsFillPlayFill" | "Bookmark"
 }
 
-const returnIcon = (iconName: string | undefined) => {
+const returnIcon = (iconName: string | undefined, size: string | undefined = "1.6rem") => {
     let item  = null
-
     switch (iconName) {
-        case 'play': item = ( <BsFillPlayFill/> ); break;
-        case 'bookmark': item = ( <BsBookmark/> ); break;
+        case 'play': item = ( <BsFillPlayFill size={size} /> ); break;
+        case 'bookmark': item = ( <BsBookmark size={size} /> ); break;
     }
-
     return item
 }
 
 function Panel ({ name, description, icon } : PanelProps) {
     return (
-        <article className="m-2 p-2 bg-white rounded-sm shadow-sm border border-gray-200 cursor-pointer">
-            <h3 className="text-lg font-semibold leading-tight text-green-400">{ name }</h3>
-            { description !== null && ( <span className="text-sm text-gray-600">{ description }</span> ) }
-            { icon !== null && ( <span className=""> {returnIcon(icon)} </span> )}
+        <article className="m-2 p-2 bg-white rounded-sm shadow-sm border border-gray-200 cursor-pointer grid grid-cols-3">
+            <h3 className="text-lg font-semibold leading-tight text-green-400 col-span-2">{ name }</h3>
+            { description !== null && ( <span className="col-span-2 text-sm text-gray-600 row-start-2">{ description }</span> ) }
+            { icon !== null && ( <span className="row-span-2 justify-self-end self-center text-green-400"> {returnIcon(icon)} </span> )}
         </article>
     )
 }
