@@ -3,7 +3,7 @@ import '../Assets/CSS/App.css'
 import Chapters from '../Components/Chapters/Chapters'
 import Button from '../Library/Components/Button/Button'
 import Hero from '../Library/Components/Hero/Hero'
-import Section from '../Library/Components/Section/Section'
+import Reciters from '../Components/Reciters/Reciters'
 
 function Home() {
 
@@ -22,11 +22,7 @@ function Home() {
     return (
         <main>
             <Hero title={title} content={content} action={button}></Hero>
-            <Section classes="h-25 bg-neutral text-white text-center">
-                <h2 ref={qariRef} className="text-4xl font-extrabold text-accent">Qari's</h2>
-            </Section>
-
-            {/* <Chapters></Chapters> */}
+            <Reciters></Reciters>
         </main>
     )
 }
