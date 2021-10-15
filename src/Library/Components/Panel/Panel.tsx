@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import { BsFillPlayFill, BsBookmark } from 'react-icons/bs';
+import { BsFillPlayFill, BsPauseFill } from 'react-icons/bs';
 export interface PanelProps {
     name: string
     description?: string
-    icon?: string | "BsFillPlayFill" | "Bookmark"
+    icon?: "play" | "pause"
     action?: (...args: any[]) => void
 }
 
@@ -11,7 +11,7 @@ const returnIcon = (iconName: string | undefined, size: string | undefined = "1.
     let item  = null
     switch (iconName) {
         case 'play': item = ( <BsFillPlayFill size={size} /> ); break;
-        case 'bookmark': item = ( <BsBookmark size={size} /> ); break;
+        case 'pause': item = ( <BsPauseFill size={size} /> ); break;
     }
     return item
 }

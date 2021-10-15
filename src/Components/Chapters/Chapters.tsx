@@ -49,13 +49,15 @@ function Chapters({ }: ChaptersProps) {
         return ( <> </> )
     }
 
+    const control = 'play'
+
     return (
         <Section classes="text-center">
             <h2 className="mb-8 sm:mb-12 text-4xl font-extrabold">Surah<span className="text-accent">'s</span></h2>
             <main className="sm:mt-3 sm:mx-auto sm:w-4/5 md:w-3/5 lg:w-2/5">
                 {chapters.chapters.map((chapter: any) => {
                     return (
-                        <Panel key={chapter['id']} name={chapter['name_simple']} description={chapter['translated_name'].name} icon="play" action={() => setChapterID(chapter['id'])}></Panel>
+                        <Panel key={chapter['id']} name={chapter['name_simple']} description={chapter['translated_name'].name} icon={control} action={() => setChapterID(chapter['id'])}></Panel>
                     )
                 })}
             </main>
