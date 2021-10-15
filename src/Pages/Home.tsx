@@ -1,21 +1,33 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import '../Assets/CSS/App.css'
 import Chapters from '../Components/Chapters/Chapters'
 import Button from '../Library/Components/Button/Button'
 import Hero from '../Library/Components/Hero/Hero'
-
-const content = "Listen to your favourite Qur'an recitation at your convenience"
-const button = (<Button label='Start' action={() => alert ('started!')} />)
+import Section from '../Library/Components/Section/Section'
 
 function Home() {
+
+    const qariRef = useRef()
+
+    const scrollToTarget = () => {
+        console.log('here')
+        console.log(qariRef)
+        qariRef.current.scrollIntoView({ behaviour: 'smooth' })
+    }
+
+    const title = <h1 className="mb-5 text-5xl font-extrabold">The Holy <span className="text-primary underline">Qur'an</span></h1>
+    const content = <p className="mb-5">Listen to your favourite Qur'an recitation at your convenience</p>
+    const button = <Button classes="btn-primary" label='Get Started' action={scrollToTarget} />
+
     return (
-        <div className="my-2">
-            {/* <header className="my-4">
-                <h1 className="text-4xl sm:text-5xl sm:leading-none md:text-6xl text-center tracking-tight leading-10 font-extrabold text-gray-900">The Holy <span className="text-indigo-600 underline hover:text-indigo-500">Qur'an</span></h1>
-            </header> */}
-            <Hero title="The Holy Qur'an" content={content} component={button}></Hero>
-            <Chapters></Chapters>
-        </div>
+        <main>
+            <Hero title={title} content={content} action={button}></Hero>
+            <Section classes="h-25 bg-neutral text-white text-center">
+                <h2 ref={qariRef} className="text-4xl font-extrabold text-accent">Qari's</h2>
+            </Section>
+
+            {/* <Chapters></Chapters> */}
+        </main>
     )
 }
 
