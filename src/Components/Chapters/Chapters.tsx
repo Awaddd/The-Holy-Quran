@@ -25,8 +25,8 @@ function Chapters({ }: ChaptersProps) {
 
     return (
         <Section classes="text-center">
-            <h2 className="mb-8 md:mb-12 text-4xl font-extrabold">Surah<span className="text-accent">'s</span></h2>
-            <main className="md:mt-3 md:mx-auto md:w-2/5">
+            <h2 className="mb-8 sm:mb-12 text-4xl font-extrabold">Surah<span className="text-accent">'s</span></h2>
+            <main className="sm:mt-3 sm:mx-auto sm:w-4/5 md:w-3/5 lg:w-2/5">
                 {chapters.map((chapter: any, index: number) => {
                     return (
                         <Panel name={chapter['name_simple']} description={chapter['translated_name'].name} icon="play" action={() => playAudio(chapter['id'])}></Panel>
