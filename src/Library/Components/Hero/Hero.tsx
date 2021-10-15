@@ -1,23 +1,24 @@
 import React from "react"
 
 export interface HeroProps {
-    title: string
-    content: string
-    component: any
+    title: any
+    content?: any
+    action?: any
+    backgroundColour?: string
 }
 
-function Hero({ title, content, component}: HeroProps) {
+function Hero({ title, content, action, backgroundColour = 'bg-base-200'}: HeroProps) {
 
     return (
-        <div className="hero min-h-screen bg-base-200">
+        <section className={`hero min-h-screen ${backgroundColour}`}>
             <div className="text-center hero-content">
                 <div className="max-w-md">
-                    <h1 className="mb-5 text-5xl font-bold">{ title }</h1>
-                    <p className="mb-5">{ content }</p>
-                    {component}
+                    {title}
+                    {content}
+                    {action}
                 </div>
             </div>
-        </div>
+        </section>
     )
 }
 
