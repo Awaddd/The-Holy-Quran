@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { QueryClient, QueryClientProvider } from 'react-query'
+import { RecoilRoot } from 'recoil';
 import Home from './Pages/Home'
 
 function App() {
@@ -7,7 +8,9 @@ function App() {
 
     return (
         <QueryClientProvider client={queryClient}>
-            <Home></Home>
+            <RecoilRoot>
+                <Home></Home>
+            </RecoilRoot>
         </QueryClientProvider>
     )
 }
