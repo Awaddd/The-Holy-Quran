@@ -1,2 +1,3 @@
 // api config
-export const baseURL = 'https://api.quran.com/api/v4'
+export const mainAPI = 'https://api.quran.com/api/v4'
+export const audioAPI = 'https://api.quran.sutanlab.id'
