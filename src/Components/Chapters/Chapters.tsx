@@ -3,9 +3,29 @@ import { useQuery } from 'react-query'
 import { getAllChapters, getChapterAudio } from '../../Services/ChaptersService'
 import Panel from '../../Library/Components/Panel/Panel'
 import Section from '../../Library/Components/Section/Section'
+import { Howl } from 'howler'
 
 export interface ChaptersProps {
 
+}
+
+const playVerse = (verses: any, index: number, cap: number) => {
+    const sound = new Howl({
+        src: verses[index].audio.primary,
+        html5: true,
+    })
+
+    sound.play()
+
+    sound.on('end', () => {
+        index++
+        if (index < cap) playVerse(verses, index, cap)
+    })
+}
+
+const playChapter = (chapterAudio: any) => {
+    let index = 0;
+    playVerse(chapterAudio.verses, index, chapterAudio.numberOfVerses)
 }
 
 function Chapters({ }: ChaptersProps) {
@@ -17,7 +37,9 @@ function Chapters({ }: ChaptersProps) {
     const { data: chapterAudio } = useQuery(["chapterAudio", { chapterID }], getChapterAudio)
 
     //
-    useEffect(() => console.log(chapterAudio), [chapterAudio])
+    useEffect(() => {
+        if (chapterAudio != null) playChapter(chapterAudio.data)
+    }, [chapterAudio])
 
     //
     const { data: chapters } = useQuery('chapters', async () => getAllChapters())
