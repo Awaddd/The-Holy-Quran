@@ -10,9 +10,8 @@ function Home() {
     const qariRef = useRef()
 
     const scrollToTarget = () => {
-        console.log('here')
-        console.log(qariRef)
-        qariRef.current.scrollIntoView({ behaviour: 'smooth' })
+        return alert('Not yet implemented')
+        // qariRef.current.scrollIntoView({ behaviour: 'smooth' })
     }
 
     const title = <h1 className="mb-5 text-5xl font-extrabold">The Holy <span className="text-primary underline">Qur'an</span></h1>
