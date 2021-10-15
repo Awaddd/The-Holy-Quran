@@ -2,6 +2,7 @@ import React from 'react'
 import { useQuery } from 'react-query'
 import { getAllChapters } from '../../Services/ChaptersService'
 import Panel from '../../Library/Components/Panel/Panel'
+import Section from '../../Library/Components/Section/Section'
 
 export interface ChaptersProps {
 
@@ -23,16 +24,16 @@ function Chapters({ }: ChaptersProps) {
     const chapters = data.chapters
 
     return (
-        <section className="bg-white">
-            {/* <h2 className="py-4 text-center text-2xl sm:text-3xl md:text-4xl font-semibold text-gray-800 underline">Chapters</h2> */}            
-            <main className="md:mt-3">
+        <Section classes="text-center">
+            <h2 className="mb-8 md:mb-12 text-4xl font-extrabold">Surah<span className="text-accent">'s</span></h2>
+            <main className="md:mt-3 md:mx-auto md:w-2/5">
                 {chapters.map((chapter: any, index: number) => {
                     return (
                         <Panel name={chapter['name_simple']} description={chapter['translated_name'].name} icon="play" action={() => playAudio(chapter['id'])}></Panel>
                     )
                 })}
             </main>
-        </section>
+        </Section>
     )
 
 }

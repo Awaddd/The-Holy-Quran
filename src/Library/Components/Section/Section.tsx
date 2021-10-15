@@ -2,7 +2,7 @@ import React from "react"
 
 export interface HeroProps {
     classes?: string
-    children: JSX.Element
+    children: JSX.Element[] | JSX.Element
 }
 
 function Section({ classes = 'bg-base-200 text-center', children }: HeroProps) {

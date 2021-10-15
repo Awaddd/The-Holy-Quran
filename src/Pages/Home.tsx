@@ -22,6 +22,7 @@ function Home() {
         <main>
             <Hero title={title} content={content} action={button}></Hero>
             <Reciters></Reciters>
+            <Chapters></Chapters>
         </main>
     )
 }
