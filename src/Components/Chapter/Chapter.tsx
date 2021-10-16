@@ -5,7 +5,13 @@ import { getChapterAudio } from '../../Services/ChaptersService'
 import { Howl } from 'howler'
 
 export interface ChapterProps {
-    chapter: any
+    chapter: {
+        'id': number
+        'name_simple': string
+        'translated_name': {
+            name: string
+        }
+    }
 }
 
 const playVerse = (verses: any, index: number, cap: number) => {
@@ -22,10 +28,7 @@ const playVerse = (verses: any, index: number, cap: number) => {
     })
 }
 
-const playChapter = (chapterAudio: any) => {
-    let index = 0;
-    playVerse(chapterAudio.verses, index, chapterAudio.numberOfVerses)
-}
+const playChapter = (chapterAudio: any) => playVerse(chapterAudio.verses, 0, chapterAudio.numberOfVerses)
 
 function Chapter ({ chapter }: ChapterProps) {
 
