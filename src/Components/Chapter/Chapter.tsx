@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import { useQuery } from "react-query"
 import Panel from "../../Library/Components/Panel/Panel"
 import { getChapterAudio } from '../../Services/ChaptersService'
-import { currentChapterState } from "../../State/state"
+import { currentChapterState, currentVerseState } from "../../State/state"
 import { useRecoilState } from "recoil"
 import { Howl } from 'howler'
 
@@ -28,10 +28,17 @@ function Chapter ({ chapter }: ChapterProps) {
     const [chapterState, setChapterState] = useRecoilState(currentChapterState)
 
     //
+    const [verseState, setVerseState] = useRecoilState(currentVerseState)
+
+    //
     useEffect(() => {
         if (chapterAudio != null) {
             setChapterState({chapterID: chapterID, isPlaying: true})
-            playChapter(chapterAudio.data)
+            playChapter({
+                verses: chapterAudio.data.verses, 
+                index: 0, 
+                cap: chapterAudio.data.numberOfVerses
+            }, setVerseState)
         }
     }, [chapterAudio])
 
@@ -44,24 +51,38 @@ function Chapter ({ chapter }: ChapterProps) {
     }
 
     return (
-        <Panel name={chapter['name_simple']} description={chapter['translated_name'].name} icon={control} action={() => setChapterID(chapter['id'])} />
+        <div>
+            <Panel name={chapter['name_simple']} description={chapter['translated_name'].name} icon={control} action={() => setChapterID(chapter['id'])} />
+            {chapterID != null && chapterState.isPlaying === true && (
+                <p>Surah is playing! Verse: {verseState.index + 1}/{verseState.cap} Sound ID: {verseState.soundID}</p>
+            )}
+        </div>
     )
 }
 
-const playVerse = (verses: any, index: number, cap: number) => {
+const playVerse = (verses: any, index: number, cap: number, setVerseState: any) => {
     const sound = new Howl({
         src: verses[index].audio.primary,
         html5: true,
     })
 
-    sound.play()
+    const soundID = sound.play()
 
+    setVerseState({
+        verses,
+        index,
+        cap,
+        soundID
+    })
+
+    //
     sound.on('end', () => {
         index++
-        if (index < cap) playVerse(verses, index, cap)
+        if (index < cap) playVerse(verses, index, cap, setVerseState)
     })
+
 }
 
-const playChapter = (chapterAudio: any) => playVerse(chapterAudio.verses, 0, chapterAudio.numberOfVerses)
+const playChapter = ({verses, index, cap}: any, setVerseState: any) =>  playVerse(verses, index, cap, setVerseState)
 
 export default Chapter
