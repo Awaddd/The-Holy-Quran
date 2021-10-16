@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import Panel from "../../Library/Components/Panel/Panel"
 import { atomFamily, useRecoilState } from "recoil"
 import { Howl } from "howler"
@@ -11,6 +11,7 @@ export interface ChapterProps {
         verseCount: number
         source: string
         isPlaying: boolean
+        control: string
     }
 }
 
@@ -22,12 +23,7 @@ export const chapterState = atomFamily({
 function Chapter ({ chapterProperty }: ChapterProps) {
 
     const [chapter, setChapter] = useRecoilState(chapterState(chapterProperty))
-    const { id, name, meaning, verseCount, source, isPlaying } = chapter
-
-    // show the play button by default
-    let control: 'play' | 'pause' | null = null
-
-    if (source) control = 'play'
+    const { id, name, meaning, verseCount, source, isPlaying, control } = chapter
 
     const controlAudio = () => {
 
@@ -37,6 +33,8 @@ function Chapter ({ chapterProperty }: ChapterProps) {
         })
 
         sound.play()
+
+        setChapter({...chapter, isPlaying: true, control: 'pause'})
 
     }
 

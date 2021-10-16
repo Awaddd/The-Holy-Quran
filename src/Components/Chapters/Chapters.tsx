@@ -29,7 +29,8 @@ function Chapters({ }: ChaptersProps) {
             meaning: chapter['translated_name'].name,
             verseCount: chapter['verses_count'],
             source: getChapterAudio(String(chapter.id).padStart(3, '0')),
-            isPlaying: false
+            isPlaying: false,
+            control: 'play'
         }
     })
     
