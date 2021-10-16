@@ -23,6 +23,13 @@ function Chapters({ }: ChaptersProps) {
     // skip the component entirely if there is no data - in future show a skeletion with a loading indicator instead
     if (typeof chapters == 'undefined' || chapters == null || chapters == []) {
         return ( <> </> )
+    if (typeof data == 'undefined' || data == null || data == {}) {
+        return (
+            <Section classes="text-center bg-gray-900 text-white">
+                <h2 className="text-error font-extrabold text-4xl">Sorry!</h2>
+                <p className="mt-4 text-1xl font-semibold">Nothing to see here :( </p>
+            </Section>
+        )
     }
 
     return (
