@@ -1,7 +1,7 @@
 import React, { useEffect } from "react"
 import Panel from "../../Library/Components/Panel/Panel"
 import { atomFamily, useRecoilState } from "recoil"
-import { Howl } from "howler"
+import ReactHowler from 'react-howler'
 
 export interface ChapterProps {
     chapterProperty: {
@@ -26,21 +26,14 @@ function Chapter ({ chapterProperty }: ChapterProps) {
     const { id, name, meaning, verseCount, source, isPlaying, control } = chapter
 
     const controlAudio = () => {
-
-        const sound = new Howl({
-            src: source,
-            html5: true
-        })
-
-        sound.play()
-
-        setChapter({...chapter, isPlaying: true, control: 'pause'})
-
+        if (isPlaying === false) setChapter({ ...chapter, isPlaying: true, control: 'pause' })
+        else setChapter({ ...chapter, isPlaying: false, control: 'play' })
     }
 
     return (
         <div>
             <Panel name={name} description={meaning} icon={control} action={controlAudio} />
+            <ReactHowler src={source} playing={isPlaying} html5={true} />
         </div>
     )
 }
