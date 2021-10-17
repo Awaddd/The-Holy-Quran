@@ -1,6 +1,7 @@
 import React from "react"
 import Panel from "../../Library/Components/Panel/Panel"
-import { atomFamily, useRecoilState } from "recoil"
+import { chapterState, activeTrackState } from "../../State/state"
+import { useRecoilState } from "recoil"
 import ReactHowler from 'react-howler'
 
 export interface ChapterProps {
@@ -15,25 +16,28 @@ export interface ChapterProps {
     }
 }
 
-export const chapterState = atomFamily({
-    key: 'chapter', 
-    default: param => param
-})
-
 function Chapter ({ chapterProperty }: ChapterProps) {
+
+    const [activeTrack, setActiveTrack] = useRecoilState(activeTrackState)
 
     const [chapter, setChapter] = useRecoilState(chapterState(chapterProperty))
     const { id, name, meaning, verseCount, source, isPlaying, control } = chapter
 
     const controlAudio = () => {
-        if (isPlaying === false) setChapter({ ...chapter, isPlaying: true, control: 'pause' })
-        else setChapter({ ...chapter, isPlaying: false, control: 'play' })
+        if (isPlaying === false) {
+            setActiveTrack({ ...activeTrack, id, isPlaying: true })
+            setChapter({ ...chapter, isPlaying: true, control: 'pause' })
+        }
+        else {
+            setActiveTrack({ ...activeTrack, id, isPlaying: false })
+            setChapter({ ...chapter, isPlaying: false, control: 'play' })
+        }
     }
 
     return (
         <div>
             <Panel name={name} description={meaning} icon={control} action={controlAudio} />
-            <ReactHowler src={source} playing={isPlaying} html5={true} onEnd={() => setChapter({ ...chapter, isPlaying: false, control: 'play' })} />
+            <ReactHowler src={source} playing={activeTrack.isPlaying === true && activeTrack.id == id && isPlaying === true} html5={true} onEnd={() => setChapter({ ...chapter, isPlaying: false, control: 'play' })} />
         </div>
     )
 }
