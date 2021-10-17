@@ -4,6 +4,7 @@ import Chapters from '../Components/Chapters/Chapters'
 import Button from '../Library/Components/Button/Button'
 import Hero from '../Library/Components/Hero/Hero'
 import Reciters from '../Components/Reciters/Reciters'
+import Player from '../Components/Player/Player'
 
 function Home() {
 
@@ -23,6 +24,7 @@ function Home() {
             <Hero title={title} content={content} action={button}></Hero>
             <Reciters></Reciters>
             <Chapters></Chapters>
+            <Player></Player>
         </main>
     )
 }
