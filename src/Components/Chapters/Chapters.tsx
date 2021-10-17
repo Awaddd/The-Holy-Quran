@@ -4,6 +4,8 @@ import { getAllChapters } from '../../Services/ChaptersService'
 import Section from '../../Library/Components/Section/Section'
 import Chapter from '../Chapter/Chapter'
 import { getChapterAudio } from '../../Services/ChaptersService'
+import { selectedReciterState } from '../../State/state'
+import { useRecoilValue } from 'recoil'
 
 export interface ChaptersProps {
 
@@ -12,6 +14,7 @@ export interface ChaptersProps {
 function Chapters({ }: ChaptersProps) {
 
     let { data } = useQuery('chapters', async () => getAllChapters())
+    const selectedReciter = useRecoilValue(selectedReciterState)
 
     if (typeof data == 'undefined' || data == null || data == {}) {
         return (
@@ -28,7 +31,7 @@ function Chapters({ }: ChaptersProps) {
             name: chapter['name_simple'],
             meaning: chapter['translated_name'].name,
             verseCount: chapter['verses_count'],
-            source: getChapterAudio(String(chapter.id).padStart(3, '0')),
+            source: getChapterAudio(String(chapter.id).padStart(3, '0'), selectedReciter.id),
             isPlaying: false,
             control: 'play'
         }
