@@ -33,7 +33,7 @@ function Chapter ({ chapterProperty }: ChapterProps) {
     return (
         <div>
             <Panel name={name} description={meaning} icon={control} action={controlAudio} />
-            <ReactHowler src={source} playing={isPlaying} html5={true} />
+            <ReactHowler src={source} playing={isPlaying} html5={true} onEnd={() => setChapter({ ...chapter, isPlaying: false, control: 'play' })} />
         </div>
     )
 }
