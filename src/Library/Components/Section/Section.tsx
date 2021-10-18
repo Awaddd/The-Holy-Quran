@@ -8,7 +8,7 @@ export interface HeroProps {
 function Section({ classes = 'bg-base-200 text-center', children }: HeroProps) {
 
     return (
-        <section className={`${classes} py-6 px-4 md:py-10`}>
+        <section className={`${classes} py-6 px-4 sm:py-12 sm:pb-14`}>
             {children}
         </section>
     )

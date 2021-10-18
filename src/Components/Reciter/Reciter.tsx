@@ -13,7 +13,7 @@ function Reciter({ reciter }: ReciterProps) {
     const { name, id, description, image } = reciter
 
     return (
-        <article className="mb-8 grid grid-flow-col gap-3 sm:w-96 mx-auto">
+        <article className="mt-8 md:mt-10 grid grid-flow-col gap-3 sm:w-96 mx-auto">
             <div className="w-24 h-24 pb-2/4 relative rounded">
                 <img className="w-full h-full absolute object-cover rounded" src={`/src/Assets/Images/${image}`} />
             </div>
