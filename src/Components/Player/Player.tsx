@@ -25,7 +25,7 @@ function Player() {
     }
 
     return (
-        <nav className={`${activeTrack.enabled === false? 'hidden' : ''} navbar bg-primary grid fixed bottom-0 w-full`}>
+        <nav className={`${activeTrack.enabled === false? 'hidden' : ''} navbar bg-primary grid fixed bottom-0 w-full border-t-2 border-white`}>
             <div className="grid grid-flow-col gap-2 justify-center">
                 <ButtonIcon icon="stop" action={() => alert('Not yet implemented')}></ButtonIcon>
                 <ButtonIcon icon={isPlaying === true ? 'pause' : 'play'} action={controlActiveTrackPlayingState}></ButtonIcon>
