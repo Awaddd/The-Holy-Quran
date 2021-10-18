@@ -1,11 +1,13 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useQuery } from 'react-query'
 import { getAllChapters } from '../../Services/ChaptersService'
 import Section from '../../Library/Components/Section/Section'
 import Chapter from '../Chapter/Chapter'
 import { getChapterAudio } from '../../Services/ChaptersService'
 import { selectedReciterState } from '../../State/state'
-import { useRecoilValue } from 'recoil'
+import { useRecoilState } from 'recoil'
+import reciters from '../../Data/reciters.json'
+import Select from '../../Library/Components/Select/Select'
 
 export interface ChaptersProps {
 
@@ -14,7 +16,13 @@ export interface ChaptersProps {
 function Chapters({ }: ChaptersProps) {
 
     const { data, status } = useQuery('chapters', async () => getAllChapters())
-    const selectedReciter = useRecoilValue(selectedReciterState)
+    const [selectedReciter, setSelectedReciter] = useState(null)
+    const [reciter, setReciter] = useRecoilState(selectedReciterState)
+
+    useEffect(() => {
+        if (selectedReciter == null) return
+        setReciter(reciters.find(reciter => reciter.id == selectedReciter))
+    }, [selectedReciter])
 
     if (status == 'loading') {
         return (
@@ -38,7 +46,7 @@ function Chapters({ }: ChaptersProps) {
             id: chapter.id,
             name: chapter['name_simple'],
             meaning: chapter['translated_name'].name,
-            source: getChapterAudio(String(chapter.id).padStart(3, '0'), selectedReciter.id),
+            source: getChapterAudio(String(chapter.id).padStart(3, '0'), reciter.id),
             control: 'play'
         }
     })
@@ -46,6 +54,13 @@ function Chapters({ }: ChaptersProps) {
     return (
         <Section classes="text-center">
             <h2 className="mb-8 sm:mb-12 text-4xl font-extrabold">Surah<span className="text-accent">'s</span></h2>
+
+            <form className="grid justify-items-center mb-4 md:mb-10">
+                <Select label="Reciter" selected={reciter.id} options={reciterOptions()} 
+                action={(event) => setSelectedReciter(event.target.value)}
+                classes="w-full sm:w-4/5 md:w-3/5 lg:w-2/5"></Select>
+            </form>
+
             <main className="sm:mt-3 sm:mx-auto sm:w-4/5 md:w-3/5 lg:w-2/5">
                 {chapters.map((chapter: any) => {
                     return (
@@ -57,5 +72,7 @@ function Chapters({ }: ChaptersProps) {
     )
 
 }
+
+const reciterOptions = () => reciters.map(reciter => {return { label: reciter.name, value: reciter.id }})
 
 export default Chapters
