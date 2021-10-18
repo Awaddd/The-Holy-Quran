@@ -17,12 +17,13 @@ export interface ChapterProps {
 function Chapter ({ chapterProperty }: ChapterProps) {
 
     const [activeTrack, setActiveTrack] = useRecoilState(activeTrackState)
+    const { isPlaying } = activeTrack
 
     const [chapter, setChapter] = useRecoilState(chapterState(chapterProperty))
     const { id, name, meaning, source, control } = chapter
 
     const controlAudio = () => {
-        if (activeTrack.hasOwnProperty('isPlaying') === false || activeTrack.isPlaying === false) {
+        if (isPlaying === false) {
             setActiveTrack({ ...activeTrack, isPlaying: true, chapter })
             setChapter({ ...chapter, control: 'pause' })
         }
@@ -37,7 +38,7 @@ function Chapter ({ chapterProperty }: ChapterProps) {
     return (
         <div>
             <Panel name={name} description={meaning} icon={control} action={controlAudio} />
-            <ReactHowler src={source} playing={activeTrack.isPlaying === true && activeTrack.chapter.id == id} html5={true} onEnd={pauseTrack} />
+            <ReactHowler src={source} playing={isPlaying === true && activeTrack.chapter.id == id} html5={true} onEnd={pauseTrack} />
         </div>
     )
 }
