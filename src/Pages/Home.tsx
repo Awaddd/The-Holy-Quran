@@ -6,14 +6,16 @@ import Hero from '../Library/Components/Hero/Hero'
 import Reciters from '../Components/Reciters/Reciters'
 import Player from '../Components/Player/Player'
 import Footer from '../Components/Footer/Footer'
+import { scroller } from 'react-scroll'
 
 function Home() {
 
-    const qariRef = useRef()
-
     const scrollToTarget = () => {
-        return alert('Not yet implemented')
-        // qariRef.current.scrollIntoView({ behaviour: 'smooth' })
+        scroller.scrollTo('chapters', {
+            duration: 1000,
+            smooth: true,
+            offset: -125
+        })
     }
 
     const title = <h1 className="mb-5 text-5xl font-extrabold">The Holy <span className="text-primary underline">Qur'an</span></h1>

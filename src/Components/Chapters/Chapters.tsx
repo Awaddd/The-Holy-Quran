@@ -8,6 +8,7 @@ import { selectedReciterState } from '../../State/state'
 import { useRecoilState } from 'recoil'
 import reciters from '../../Data/reciters.json'
 import Select from '../../Library/Components/Select/Select'
+import { Element } from 'react-scroll'
 
 export interface ChaptersProps {
 
@@ -54,6 +55,7 @@ function Chapters({ }: ChaptersProps) {
     return (
         <Section classes="text-center">
             <h2 className="mb-8 sm:mb-8 text-4xl font-extrabold">Surah<span className="text-accent">'s</span></h2>
+            <TargetElement name="chapters" />
 
             <form className="grid justify-items-center mb-4 sm:mb-10">
                 <Select label="Reciter" selected={reciter.id} options={reciterOptions()} 
@@ -73,6 +75,7 @@ function Chapters({ }: ChaptersProps) {
 
 }
 
+const TargetElement = Element;
 const reciterOptions = () => reciters.map(reciter => {return { label: reciter.name, value: reciter.id }})
 
 export default Chapters
