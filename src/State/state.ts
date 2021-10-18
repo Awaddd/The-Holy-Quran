@@ -1,11 +1,11 @@
-import { atomFamily, atom, selector, selectorFamily } from 'recoil';
+import { atomFamily, atom } from 'recoil';
 import reciters from '../Data/reciters.json'
 
 // global state
 
 export const selectedReciterState = atom({
     key: 'selectedReciterState',
-    default: reciters.find(reciter => reciter.name == 'Mishary Al Afasy')
+    default: reciters.find(reciter => reciter.name == 'Abdurrashid As Sufi')
 })
 
 export const chapterState = atomFamily({
@@ -21,11 +21,3 @@ export const activeTrackState = atom({
     }
 })
 
-export const previousChapterSelector = selector({
-    key: 'previousChapterSelector',
-    get: ({get}) => {
-        const activeTrack = get(activeTrackState)
-        if (activeTrack.hasOwnProperty('chapter') === false) return
-        return get(chapterState(activeTrack.chapter))
-    }
-})
