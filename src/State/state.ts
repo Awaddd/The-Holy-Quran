@@ -16,7 +16,8 @@ export const chapterState = atomFamily({
 export const activeTrackState = atom({
     key: 'activeTrackState',
     default: {
-        isPlaying: false
+        isPlaying: false,
+        enabled: false
     }
 })
 

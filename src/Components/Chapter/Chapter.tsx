@@ -24,14 +24,14 @@ function Chapter ({ chapterProperty }: ChapterProps) {
 
     const controlAudio = () => {
         if (isPlaying === false) {
-            setActiveTrack({ ...activeTrack, isPlaying: true, chapter })
+            setActiveTrack({ ...activeTrack, enabled: true, isPlaying: true, chapter })
             setChapter({ ...chapter, control: 'pause' })
         }
         else pauseTrack()
     }
 
     const pauseTrack = () => {
-        setActiveTrack({ ...activeTrack, isPlaying: false, chapter })
+        setActiveTrack({ ...activeTrack, enabled: true, isPlaying: false, chapter })
         setChapter({ ...chapter, control: 'play' })
     }
 
