@@ -5,7 +5,7 @@ import reciters from '../Data/reciters.json'
 
 export const selectedReciterState = atom({
     key: 'selectedReciterState',
-    default: reciters.find(reciter => reciter.name == 'Abdurrashid As Sufi')
+    default: reciters.find(reciter => reciter.name == 'Mishary Al Afasy')
 })
 
 export const chapterState = atomFamily({
