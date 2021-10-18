@@ -54,10 +54,10 @@ function Chapters({ }: ChaptersProps) {
     
     return (
         <Section classes="text-center">
-            <h2 className="mb-8 sm:mb-8 text-4xl font-extrabold">Surah<span className="text-accent">'s</span></h2>
+            <h2 className="mb-8 text-4xl font-extrabold">Surah<span className="text-accent">'s</span></h2>
             <TargetElement name="chapters" />
 
-            <form className="grid justify-items-center mb-4 sm:mb-10">
+            <form className="grid justify-items-center mb-5 sm:mb-10">
                 <Select label="Reciter" selected={reciter.id} options={reciterOptions()} 
                 action={(event) => setSelectedReciter(event.target.value)}
                 classes="w-full sm:w-4/5 md:w-3/5 lg:w-2/5"></Select>
