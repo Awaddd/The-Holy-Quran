@@ -22,9 +22,12 @@ function Chapter ({ chapterProperty }: ChapterProps) {
     const [chapter, setChapter] = useRecoilState(chapterState(chapterProperty))
     const { id, name, meaning, source, control } = chapter
 
+    const [previousChapter, setPreviousChapter] = useRecoilState(chapterState(activeTrack.chapter))
+
     const controlAudio = () => {
 
         if (activeTrack.hasOwnProperty('chapter') && activeTrack.chapter.hasOwnProperty('id') && activeTrack.chapter.id !== id) {
+            setPreviousChapter({ ...previousChapter, control: 'play' })
             return playTrack()
         }
 
