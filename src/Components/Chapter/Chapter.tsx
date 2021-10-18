@@ -23,11 +23,18 @@ function Chapter ({ chapterProperty }: ChapterProps) {
     const { id, name, meaning, source, control } = chapter
 
     const controlAudio = () => {
-        if (isPlaying === false) {
-            setActiveTrack({ ...activeTrack, enabled: true, isPlaying: true, chapter })
-            setChapter({ ...chapter, control: 'pause' })
+
+        if (activeTrack.hasOwnProperty('chapter') && activeTrack.chapter.hasOwnProperty('id') && activeTrack.chapter.id !== id) {
+            return playTrack()
         }
-        else pauseTrack()
+
+        isPlaying === false ? playTrack() : pauseTrack()
+
+    }
+
+    const playTrack = () => {
+        setActiveTrack({ ...activeTrack, enabled: true, isPlaying: true, chapter })
+        setChapter({ ...chapter, control: 'pause' })
     }
 
     const pauseTrack = () => {
@@ -36,10 +43,10 @@ function Chapter ({ chapterProperty }: ChapterProps) {
     }
 
     return (
-        <div>
+        <>
             <Panel name={name} description={meaning} icon={control} action={controlAudio} />
             <ReactHowler src={source} playing={isPlaying === true && activeTrack.chapter.id == id} html5={true} onEnd={pauseTrack} />
-        </div>
+        </>
     )
 }
 
