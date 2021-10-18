@@ -21,3 +21,11 @@ export const activeTrackState = atom({
     }
 })
 
+export const previousChapterSelector = selector({
+    key: 'previousChapterSelector',
+    get: ({get}) => {
+        const activeTrack = get(activeTrackState)
+        if (activeTrack.hasOwnProperty('chapter') === false) return
+        return get(chapterState(activeTrack.chapter))
+    }
+})
