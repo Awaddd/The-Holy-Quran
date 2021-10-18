@@ -10,11 +10,12 @@ export interface PlayerProps {
 function Player() {
 
     const [activeTrack, setActiveTrack] = useRecoilState(activeTrackState)
+    const { isPlaying } = activeTrack
     const [chapter, setChapter] = useRecoilState(chapterState(activeTrack.chapter))
 
     const controlActiveTrackPlayingState = () => {
         if (activeTrack.hasOwnProperty('chapter') == false || activeTrack.chapter.hasOwnProperty('id') == false || activeTrack.chapter.id == null) return
-        if (activeTrack.isPlaying === false) {
+        if (isPlaying === false) {
             setActiveTrack({...activeTrack, isPlaying: true})
             setChapter({...chapter, control: 'pause'})
         } else {
@@ -26,8 +27,8 @@ function Player() {
     return (
         <nav className="navbar bg-primary grid">
             <div className="grid grid-flow-col gap-2 justify-center">
-                <ButtonIcon icon="stop" action={() => alert('connected')}></ButtonIcon>
-                <ButtonIcon icon={activeTrack.isPlaying === true ? 'pause' : 'play'} action={controlActiveTrackPlayingState}></ButtonIcon>
+                <ButtonIcon icon="stop" action={() => alert('Not yet implemented')}></ButtonIcon>
+                <ButtonIcon icon={isPlaying === true ? 'pause' : 'play'} action={controlActiveTrackPlayingState}></ButtonIcon>
             </div>
         </nav>
     )
