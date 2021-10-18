@@ -1,7 +1,7 @@
 import React from "react"
 import Section from "../../Library/Components/Section/Section"
 import Reciter from "../Reciter/Reciter"
-import reciters from '../../Data/reciters.json'
+import reciters from '../../Data/reciters'
 
 export interface RecitersProps {
 

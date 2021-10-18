@@ -1,5 +1,5 @@
 import { atomFamily, atom } from 'recoil';
-import reciters from '../Data/reciters.json'
+import reciters from '../Data/reciters'
 
 // global state
 

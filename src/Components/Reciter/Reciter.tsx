@@ -15,7 +15,7 @@ function Reciter({ reciter }: ReciterProps) {
     return (
         <article className="mt-8 md:mt-10 grid grid-flow-col gap-3 sm:w-96 mx-auto">
             <div className="w-24 h-24 pb-2/4 relative rounded">
-                <img className="w-full h-full absolute object-cover rounded" src={`/src/Assets/Images/${image}`} />
+                <img className="w-full h-full absolute object-cover rounded" src={image} />
             </div>
             <main className="text-left align-center">
                 <h6 className="font-bold">{name}</h6>

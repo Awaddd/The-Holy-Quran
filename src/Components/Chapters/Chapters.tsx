@@ -6,7 +6,7 @@ import Chapter from '../Chapter/Chapter'
 import { getChapterAudio } from '../../Services/ChaptersService'
 import { selectedReciterState } from '../../State/state'
 import { useRecoilState } from 'recoil'
-import reciters from '../../Data/reciters.json'
+import reciters from '../../Data/reciters'
 import Select from '../../Library/Components/Select/Select'
 import { Element } from 'react-scroll'
 
