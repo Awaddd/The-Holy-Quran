@@ -1,7 +1,7 @@
 import React, { useEffect } from "react"
 import ButtonIcon from "../../Library/Components/ButtonIcon/ButtonIcon"
-import { activeTrackState } from "../../State/state"
-import { useRecoilState } from "recoil"
+import { activeTrackState, chapterState } from "../../State/state"
+import { useRecoilState, useRecoilValue } from "recoil"
 
 export interface PlayerProps {
 
@@ -10,9 +10,10 @@ export interface PlayerProps {
 function Player() {
 
     const [activeTrack, setActiveTrack] = useRecoilState(activeTrackState)
+    const chapter = useRecoilValue(chapterState(activeTrack.chapter))
 
     const controlActiveTrackPlayingState = () => {
-        if (activeTrack.hasOwnProperty('id') == false || activeTrack.id == null) return
+        if (activeTrack.hasOwnProperty('chapter') == false || activeTrack.chapter.hasOwnProperty('id') == false || activeTrack.chapter.id == null) return
         setActiveTrack(activeTrack => { return {...activeTrack, isPlaying: !activeTrack.isPlaying} })
     }
 

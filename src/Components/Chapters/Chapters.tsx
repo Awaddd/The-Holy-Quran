@@ -30,9 +30,7 @@ function Chapters({ }: ChaptersProps) {
             id: chapter.id,
             name: chapter['name_simple'],
             meaning: chapter['translated_name'].name,
-            verseCount: chapter['verses_count'],
             source: getChapterAudio(String(chapter.id).padStart(3, '0'), selectedReciter.id),
-            isPlaying: false,
             control: 'play'
         }
     })

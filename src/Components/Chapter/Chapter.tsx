@@ -9,9 +9,7 @@ export interface ChapterProps {
         id: number
         name: string
         meaning: string
-        verseCount: number
         source: string
-        isPlaying: boolean
         control: string
     }
 }
@@ -21,25 +19,25 @@ function Chapter ({ chapterProperty }: ChapterProps) {
     const [activeTrack, setActiveTrack] = useRecoilState(activeTrackState)
 
     const [chapter, setChapter] = useRecoilState(chapterState(chapterProperty))
-    const { id, name, meaning, verseCount, source, isPlaying, control } = chapter
+    const { id, name, meaning, source, control } = chapter
 
     const controlAudio = () => {
-        if (isPlaying === false) {
-            setActiveTrack({ ...activeTrack, id, isPlaying: true })
-            setChapter({ ...chapter, isPlaying: true, control: 'pause' })
+        if (activeTrack.hasOwnProperty('isPlaying') === false || activeTrack.isPlaying === false) {
+            setActiveTrack({ ...activeTrack, isPlaying: true, chapter })
+            setChapter({ ...chapter, control: 'pause' })
         }
         else pauseTrack()
     }
 
     const pauseTrack = () => {
-        setActiveTrack({ ...activeTrack, id, isPlaying: false })
-        setChapter({ ...chapter, isPlaying: false, control: 'play' })
+        setActiveTrack({ ...activeTrack, isPlaying: false, chapter })
+        setChapter({ ...chapter, control: 'play' })
     }
 
     return (
         <div>
             <Panel name={name} description={meaning} icon={control} action={controlAudio} />
-            <ReactHowler src={source} playing={activeTrack.isPlaying === true && activeTrack.id == id} html5={true} onEnd={pauseTrack} />
+            <ReactHowler src={source} playing={activeTrack.isPlaying === true && activeTrack.chapter.id == id} html5={true} onEnd={pauseTrack} />
         </div>
     )
 }
