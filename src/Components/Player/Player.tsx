@@ -25,7 +25,7 @@ function Player() {
     }
 
     return (
-        <nav className="navbar bg-primary grid">
+        <nav className="navbar bg-primary grid fixed bottom-0 w-full">
             <div className="grid grid-flow-col gap-2 justify-center">
                 <ButtonIcon icon="stop" action={() => alert('Not yet implemented')}></ButtonIcon>
                 <ButtonIcon icon={isPlaying === true ? 'pause' : 'play'} action={controlActiveTrackPlayingState}></ButtonIcon>
