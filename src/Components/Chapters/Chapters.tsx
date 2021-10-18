@@ -13,13 +13,21 @@ export interface ChaptersProps {
 
 function Chapters({ }: ChaptersProps) {
 
-    let { data } = useQuery('chapters', async () => getAllChapters())
+    const { data, status } = useQuery('chapters', async () => getAllChapters())
     const selectedReciter = useRecoilValue(selectedReciterState)
+
+    if (status == 'loading') {
+        return (
+            <Section>
+                <p className="text-center">Loading...</p>
+            </Section>
+        )
+    }
 
     if (typeof data == 'undefined' || data == null || data == {}) {
         return (
-            <Section classes="text-center bg-gray-900 text-white">
-                <h2 className="text-error font-extrabold text-4xl">Sorry!</h2>
+            <Section classes="text-center bg-accent text-white">
+                <h2 className="font-extrabold text-4xl">Sorry!</h2>
                 <p className="mt-4 text-1xl font-semibold">Nothing to see here :( </p>
             </Section>
         )
