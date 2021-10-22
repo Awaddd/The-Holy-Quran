@@ -10,27 +10,27 @@ import { scroller } from 'react-scroll'
 
 function Home() {
 
-    const scrollToTarget = () => {
-        scroller.scrollTo('chapters', {
-            duration: 1000,
-            smooth: true,
-            offset: -125
-        })
-    }
+  const scrollToTarget = () => {
+    scroller.scrollTo('chapters', {
+      duration: 1000,
+      smooth: true,
+      offset: -125
+    })
+  }
 
-    const title = <h1 className="mb-5 text-5xl font-extrabold">The Holy <span className="text-primary underline">Qur'an</span></h1>
-    const content = <p className="mb-5">Listen to your favourite Qur'an recitation at your convenience</p>
-    const button = <Button classes="btn-primary" label='Get Started' action={scrollToTarget} />
+  const title = <h1 className="mb-5 text-5xl font-extrabold">The Holy <span className="text-primary underline">Qur'an</span></h1>
+  const content = <p className="mb-5">Listen to your favourite Qur'an recitation at your convenience</p>
+  const button = <Button classes="btn-primary" label='Get Started' action={scrollToTarget} />
 
-    return (
-        <main>
-            <Hero title={title} content={content} action={button}></Hero>
-            <Reciters></Reciters>
-            <Chapters></Chapters>
-            <Player></Player>
-            <Footer></Footer>
-        </main>
-    )
+  return (
+    <main>
+      <Hero title={title} content={content} action={button}></Hero>
+      <Reciters></Reciters>
+      <Chapters></Chapters>
+      <Player></Player>
+      <Footer></Footer>
+    </main>
+  )
 }
 
 export default Home

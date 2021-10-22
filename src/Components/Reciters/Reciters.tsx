@@ -7,14 +7,14 @@ export interface RecitersProps {
 
 }
 
-function Reciters ({}: RecitersProps) {
+function Reciters({ }: RecitersProps) {
 
-    return (
-        <Section classes="px-4 pb-12 bg-primary text-center text-white">
-            <h2 className="mb-10 sm:mb-12 text-4xl font-extrabold">Qari's</h2>
-            {reciters.map((reciter, key) => <Reciter key={key} reciter={reciter} />)}
-        </Section>
-    )
+  return (
+    <Section classes="px-4 pb-12 bg-primary text-center text-white">
+      <h2 className="mb-10 sm:mb-12 text-4xl font-extrabold">Qari's</h2>
+      {reciters.map((reciter, key) => <Reciter key={key} reciter={reciter} />)}
+    </Section>
+  )
 }
 
 export default Reciters
